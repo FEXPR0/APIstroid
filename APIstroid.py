@@ -103,7 +103,7 @@ def visualize3D(asteroids_data):
             f"Durchmesser: {row['diameter_min']:.1f} - {row['diameter_max']:.1f} m<br>"
             f"Geschwindigkeit: {row['velocity']:,.0f} km/h<br>"
             f"Datum: {row['date']}<br>"
-            f"Gefährlich: {'Ja' if row['hazardous'] else 'Nein'}"
+            f"Potenziell gefährlich: {'Ja' if row['hazardous'] else 'Nein'}"
             for _, row in df.iterrows()
         ],
         hoverinfo="text"
