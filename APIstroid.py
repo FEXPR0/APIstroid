@@ -19,7 +19,7 @@ def getAsteroidData(start_date, end_date):
         print(f"Fehler beim Abrufen der Daten: {e}")
         return None
 
-def extract_asteroid_info(data):
+def extractInfo(data):
     """Extrahiert relevante Informationen aus den NASA-Daten"""
     asteroids = []
     
@@ -111,17 +111,25 @@ def visualize3D(asteroids_data):
     
     # Layout
     layout = go.Layout(
-        title=f"Near-Earth Asteroids ({len(asteroids_data)} Objekte)",
-        scene=dict(
-            xaxis_title="X (km)",
-            yaxis_title="Y (km)",
-            zaxis_title="Z (km)",
-            camera=dict(
-                eye=dict(x=1.5, y=1.5, z=1.5)
-            )
-        ),
-        showlegend=True
-    )
+    title=f"Near-Earth Asteroids ({len(asteroids_data)} Objekte)",
+    scene=dict(
+        xaxis_title="X (km)",
+        yaxis_title="Y (km)",
+        zaxis_title="Z (km)",
+        zaxis_title_font_color="white",
+        xaxis=dict(backgroundcolor="black", gridcolor="gray", zerolinecolor="gray", color="white"),
+        yaxis=dict(backgroundcolor="black", gridcolor="gray", zerolinecolor="gray", color="white"),
+        zaxis=dict(backgroundcolor="black", gridcolor="gray", zerolinecolor="gray", color="white"),
+        camera=dict(
+            eye=dict(x=1.5, y=1.5, z=1.5)
+        )
+    ),
+    paper_bgcolor="black",   # Gesamter Hintergrund
+    plot_bgcolor="black",    # Plot-Bereich
+    font=dict(color="white"),  # Alle Texte weiß
+    showlegend=True
+)
+
     
     fig = go.Figure(data=[earth, asteroids], layout=layout)
     fig.show()
@@ -150,7 +158,7 @@ def main():
         return
     
     # Asteroideninformationen extrahieren
-    asteroids = extract_asteroid_info(data)
+    asteroids = extractInfo(data)
     
     if not asteroids:
         print("Keine Asteroiden im angegebenen Zeitraum gefunden.")
